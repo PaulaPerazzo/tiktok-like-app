@@ -23,6 +23,17 @@ export default function Feed() {
     getFeed();
   }, []);
 
+  const viewabilityConfigCallbackPairs = useRef(
+    ({ changed, viewableItems }) => {
+        console.log('changed', changed);
+        console.log('viewableItems', viewableItems);
+
+        if (changed.length > 0) {
+            setCurrentVid(changed[0].index);
+        }
+    }
+  )
+
   let vidRef = useRef(null);
 
   const renderVids = ({ item, index }) => {
@@ -36,22 +47,12 @@ export default function Feed() {
           volume={1.0}
           isMuted={false}
           resizeMode='cover'
+          shouldPlay={index === currentVid}
           isLooping
           style={{ width: width, height: height }}
         />
     );
   };
-
-  const viewabilityConfigCallbackPairs = useRef(
-    ({ changed, viewableItems }) => {
-        console.log('changed', changed);
-        console.log('viewableItems', viewableItems);
-
-        if (changed.length > 0) {
-            setCurrentVid(changed[0].index);
-        }
-    }
-  )
 
   return (
     <View style={styles.container}>
