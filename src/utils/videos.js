@@ -5,7 +5,7 @@ export const videos = [
     },
     {
       id: 1,
-      url: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4",
+      url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     },
     {
       id: 2,

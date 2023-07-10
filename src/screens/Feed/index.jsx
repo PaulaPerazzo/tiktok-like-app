@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimensions, TouchableHighlight } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { Video } from 'expo-av';
 import { videos } from '../../utils/videos';
@@ -37,7 +37,17 @@ export default function Feed() {
   let vidRef = useRef(null);
 
   const renderVids = ({ item, index }) => {
+
+    const onPress = () => {
+      if (index === currentVid) {
+        setCurrentVid(-1);
+      } else {
+        setCurrentVid(index);
+      };
+    };
+
     return (
+      <TouchableHighlight onPress={onPress} >
         <Video
           ref={vidRef}
           source={{
@@ -51,6 +61,7 @@ export default function Feed() {
           isLooping
           style={{ width: width, height: height }}
         />
+      </TouchableHighlight>
     );
   };
 
